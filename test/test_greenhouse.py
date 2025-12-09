@@ -40,7 +40,7 @@ class TestGreenhouse(TestCase):
     def test_turn_off_sprinkler(self, output: Mock):
         greenhouse = Greenhouse()
         greenhouse.sprinkler_on = True
-        greenhouse.turn_on_sprinkler()
+        greenhouse.turn_off_sprinkler()
         output.assert_called_once_with(greenhouse.SPRINKLER_PIN, GPIO.LOW)
         self.assertFalse(greenhouse.sprinkler_on)
 
