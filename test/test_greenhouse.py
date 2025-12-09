@@ -83,3 +83,10 @@ class TestGreenhouse(TestCase):
         self.assertTrue(greenhouse.check_too_much_light())
         input_sensor.assert_called_once_with(greenhouse.PHOTO_PIN)
 
+    @patch.object(GPIO, "input")
+    def test_check_too_much_light_false(self, input_sensor: Mock):
+        input_sensor.return_value = False
+        greenhouse = Greenhouse()
+        self.assertFalse(greenhouse.check_too_much_light())
+        input_sensor.assert_called_once_with(greenhouse.PHOTO_PIN)
+
