@@ -22,3 +22,9 @@ class TestGreenhouse(TestCase):
         greenhouse = Greenhouse()
         self.assertRaises(GreenhouseError, greenhouse.measure_soil_moisture)
 
+    @patch.object(Seesaw, "moisture_read")
+    def test_moisture_lovel_outside_range_300_500_higher(self, moisture_sensor: Mock):
+        moisture_sensor.return_value = 501
+        greenhouse = Greenhouse()
+        self.assertRaises(GreenhouseError, greenhouse.measure_soil_moisture)
+
