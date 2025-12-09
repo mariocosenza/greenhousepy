@@ -28,3 +28,11 @@ class TestGreenhouse(TestCase):
         greenhouse = Greenhouse()
         self.assertRaises(GreenhouseError, greenhouse.measure_soil_moisture)
 
+    @patch.object(GPIO, "output")
+    def test_turn_on_sprinkler(self, output: Mock):
+        greenhouse = Greenhouse()
+        greenhouse.turn_on_sprinkler()
+        output.assert_called_once_with(greenhouse.SPRINKLER_PIN, True)
+        self.assertTrue(greenhouse.sprinkler_on)
+
+
