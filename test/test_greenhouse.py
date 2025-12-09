@@ -16,3 +16,9 @@ class TestGreenhouse(TestCase):
         moisture_level = greenhouse.measure_soil_moisture()
         self.assertEqual(moisture_level, 300)
 
+    @patch.object(Seesaw, "moisture_read")
+    def test_moisture_lovel_outside_range_300_500(self, moisture_sensor: Mock):
+        moisture_sensor.return_value = 299
+        greenhouse = Greenhouse()
+        self.assertRaises(GreenhouseError, greenhouse.measure_soil_moisture)
+
