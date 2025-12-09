@@ -74,6 +74,3 @@ class TestGreenhouse(TestCase):
         greenhouse.manage_sprinkler()
         output.assert_not_called()
         self.assertTrue(greenhouse.sprinkler_on)
-
-
-
