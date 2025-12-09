@@ -50,8 +50,7 @@ class Greenhouse:
                 self.turn_off_sprinkler()
 
     def check_too_much_light(self) -> bool:
-        # To be implemented
-        pass
+        return GPIO.input(self.PHOTO_PIN)
 
     def manage_lightbulb(self) -> None:
         # To be implemented
