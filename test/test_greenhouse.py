@@ -9,8 +9,10 @@ from src.greenhouse import Greenhouse, GreenhouseError
 
 class TestGreenhouse(TestCase):
 
-    @patch.object(GPIO, "input")
-    def test_something(self, mock_object: Mock):
-        # This is an example of test where I want to mock the GPIO.input() function
-        pass
+    @patch.object(Seesaw, "moisture_read")
+    def test_moisture_lovel_in_range_300_500(self, moisture_sensor: Mock):
+        moisture_sensor.return_value = 300
+        greenhouse = Greenhouse()
+        moisture_level = greenhouse.measure_soil_moisture()
+        self.assertEqual(moisture_level, 300)
 
